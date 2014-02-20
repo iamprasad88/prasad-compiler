@@ -1,5 +1,11 @@
 package com.prasad.cs6413.scanner;
-
+/**
+ * 
+ * @author Prasad Thondamuthur Vasanth (POly Id 0529494)
+ * 
+ * Extends Simple Token and specialized functions to accommodate Word tokens
+ *
+ */
 public class WordToken extends SimpleToken {
 
 	public WordToken(String Lexeme, String sourceFile, int lineNumber,

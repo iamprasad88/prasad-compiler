@@ -5,6 +5,17 @@ import com.prasad.cs6413.scanner.*;
 import java.io.IOException;
 import java.io.BufferedReader;
 import java.io.InputStreamReader;
+/**
+ * 
+ * @author Prasad Thondamuthur Vasanth (POly Id 0529494)
+ * @version 0.1
+ *Below class has the main thread.
+ *
+ *It calls the File Scanner and provides it with the file path
+ *It prints the token strings obtained by getToken()
+ *
+ *
+ */
 
 public class Compiler {
 
