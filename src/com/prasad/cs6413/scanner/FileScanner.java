@@ -115,13 +115,16 @@ public class FileScanner {
 					// Matches num -> digit optional _fraction optional_exponent
 					tokenString.add(new NumberToken(STokenizer.sval,
 							sourceFile, lineNumber, columnNumber));
+				} else if (STokenizer.sval.equals("-")) {
+					tokenString.add(new OperatorToken(STokenizer.sval,
+							sourceFile, lineNumber, columnNumber));
 				}
 				columnNumber += STokenizer.sval.length() + 1;
 				break;
 
 			default:
 				char chr = (char) STokenizer.ttype;
-				if (chr == '{') {
+				if (chr == '{') { //Try to avoid comments. More testing is required.
 					boolean comment = true;
 					do {
 						nextToken = STokenizer.nextToken();
