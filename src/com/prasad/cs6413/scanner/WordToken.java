@@ -2,13 +2,10 @@ package com.prasad.cs6413.scanner;
 
 public class WordToken extends SimpleToken {
 
-	private String Lexeme;
-
-	public WordToken(String sourceFile, int lineNumber, int columnNumber,
-			String lexeme) {
+	public WordToken(String Lexeme, String sourceFile, int lineNumber,
+			int columnNumber) {
 		// TODO Auto-generated constructor stub
-		super(sourceFile, lineNumber, columnNumber, "tokword");
-		this.Lexeme = lexeme;
+		super(Lexeme, sourceFile, lineNumber, columnNumber, "tokword");
 	}
 
 	public String getLexeme() {
@@ -21,5 +18,9 @@ public class WordToken extends SimpleToken {
 		return this.getTokName() + " Value: " + this.getLexeme() + " File:"
 				+ this.getSourceFile().toString() + " Line:"
 				+ this.getLineNumber() + " Column:" + this.getColumnNumber();
+	}
+
+	String getValue() {
+		return getLexeme();
 	}
 }
