@@ -1,5 +1,15 @@
 package com.prasad.cs6413.scanner;
 
+/**
+ * 
+ * @author Prasad Thondamuthur Vasanth (POly Id 0529494)
+ * @version 0.1
+ * 
+ *          Provides a foundation of a basic token type. Provides mandatory
+ *          fields which must be provided by all sub classes.
+ * 
+ */
+
 public abstract class SimpleToken {
 	private String SourceFile; // Stores source file path (for future use)
 	private int LineNumber; // Stores Line Number (for future use)
@@ -9,6 +19,20 @@ public abstract class SimpleToken {
 							// value in constructor.
 	protected String Lexeme; // Text that matched in the stream
 
+	/**
+	 * 
+	 * @param Lexeme
+	 *            String Text that matched in the stream
+	 * @param sourceFile
+	 *            String Stores source file path (for future use)
+	 * @param lineNumber
+	 *            int Stores Line Number (for future use)
+	 * @param columnNumber
+	 *            int Stores Column Number (for future use)
+	 * @param tokName
+	 *            String Stores Token Name (tokword, toknumber or tokop etc...)
+	 */
+	
 	public SimpleToken(String Lexeme, String sourceFile, int lineNumber,
 			int columnNumber, String tokName) {
 		// TODO Auto-generated constructor stub

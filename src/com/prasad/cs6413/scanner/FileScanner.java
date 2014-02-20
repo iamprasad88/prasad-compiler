@@ -19,9 +19,29 @@ import java.util.regex.Pattern;
  */
 public class FileScanner {
 
-	Scanner File;
-	String Path;
-	StreamTokenizer STokenizer;
+	Scanner File; // Object reference to the file stream
+	String Path; // stores Path to file that must be scanned
+
+	StreamTokenizer STokenizer; /*
+								 * Is a specialized java library class which is
+								 * used to extract workd from a File stream.
+								 * Based on how it is setup (see constructor) it
+								 * can break a stream to words.
+								 * 
+								 * I have broken the stream to simple words
+								 * here. Word is a sequence of alphabets,
+								 * numbers, '_', '.' and '-'. _ was added as
+								 * some variables can have _ in their name as
+								 * per pascal specs in Dragon book '.' was added
+								 * to check for floating poit numbers '-'
+								 * (minus) was added to check for negative
+								 * numbers or exponents.
+								 * 
+								 * Note: Current version only supports
+								 * subtraction operator if space is included
+								 * between '-' and second operand e.g. (A- B) or
+								 * (A - B).
+								 */
 
 	public FileScanner(String Path) {
 
@@ -85,7 +105,7 @@ public class FileScanner {
 				break;
 
 			case StreamTokenizer.TT_WORD:
-				if (Pattern.matches("[a-zA-z][a-zA-Z0-9]*", STokenizer.sval)) {
+				if (Pattern.matches("[a-zA-z]([a-zA-Z0-9])*", STokenizer.sval)) {
 					// matches id->letter(letter|digit)*
 					tokenString.add(new WordToken(STokenizer.sval, sourceFile,
 							lineNumber, columnNumber));
