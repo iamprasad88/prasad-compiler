@@ -1,10 +1,12 @@
 package com.prasad.cs6413.scanner;
+
 /**
  * 
  * @author Prasad Thondamuthur Vasanth (POly Id 0529494)
  * 
- * Extends Simple Token and specialized functions to accommodate Number tokens
- *
+ *         Extends Simple Token and specialized functions to accommodate Number
+ *         tokens
+ * 
  */
 public class NumberToken extends SimpleToken {
 
@@ -19,7 +21,7 @@ public class NumberToken extends SimpleToken {
 
 	@Override
 	public String toString() {
-		return this.getTokName() + " Value: " + this.getLexeme() + " File:"
+		return this.getTokName() + " Value: " + this.getValue() + " File:"
 				+ this.getSourceFile().toString() + " Line:"
 				+ this.getLineNumber() + " Column:" + this.getColumnNumber();
 	}

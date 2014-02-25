@@ -109,12 +109,31 @@ public class FileScanner {
 					// matches id->letter(letter|digit)*
 					tokenString.add(new WordToken(STokenizer.sval, sourceFile,
 							lineNumber, columnNumber));
-				} else if (Pattern.matches(
-						"(-)?[0-9]+(.[0-9]+)?([eE](-)?[0-9]+)?",
+				} else if (Pattern.matches("-[a-zA-z]([a-zA-Z0-9])*",
 						STokenizer.sval)) {
-					// Matches num -> digit optional _fraction optional_exponent
+					// matches id->letter(letter|digit)*
+					tokenString.add(new OperatorToken("-", sourceFile,
+							lineNumber, columnNumber));
+					tokenString.add(new WordToken(STokenizer.sval.substring(1),
+							sourceFile, lineNumber, columnNumber + 1));
+				} else if (Pattern.matches(
+						"-[0-9]+(.[0-9]+)?([eE](-)?[0-9]+)?", STokenizer.sval)) {
+					// Matches -ve num -> digit optional _fraction
+					// optional_exponent
+					// '-' is added as operator
+					tokenString.add(new OperatorToken("-", sourceFile,
+							lineNumber, columnNumber));
+
+					tokenString.add(new NumberToken(STokenizer.sval
+							.substring(1), sourceFile, lineNumber,
+							columnNumber + 1));
+				} else if (Pattern.matches("[0-9]+(.[0-9]+)?([eE](-)?[0-9]+)?",
+						STokenizer.sval)) {
+					// Matches +ve num -> digit optional _fraction
+					// optional_exponent
+
 					tokenString.add(new NumberToken(STokenizer.sval,
-							sourceFile, lineNumber, columnNumber));
+							sourceFile, lineNumber, columnNumber + 1));
 				} else if (STokenizer.sval.equals("-")) {
 					tokenString.add(new OperatorToken(STokenizer.sval,
 							sourceFile, lineNumber, columnNumber));
@@ -122,9 +141,10 @@ public class FileScanner {
 				columnNumber += STokenizer.sval.length() + 1;
 				break;
 
-			default:
+			default: // Checking for all operators
 				char chr = (char) STokenizer.ttype;
-				if (chr == '{') { //Try to avoid comments. More testing is required.
+				if (chr == '{') { // Try to avoid comments. More testing is
+									// required.
 					boolean comment = true;
 					do {
 						nextToken = STokenizer.nextToken();
@@ -134,9 +154,60 @@ public class FileScanner {
 					} while (comment == true
 							&& nextToken != StreamTokenizer.TT_EOF);
 				} else {
-					tokenString.add(new OperatorToken(String.valueOf(chr),
-							sourceFile, lineNumber, columnNumber));
+					// Checking for <= or <> operators
+					if (chr == '<') {
+						nextToken = STokenizer.nextToken();
+						char chr2 = (char) STokenizer.ttype;
+						if (chr2 == '=') {
+							tokenString.add(new OperatorToken("<=", sourceFile,
+									lineNumber, columnNumber));
+							columnNumber++;
+						} else if (chr2 == '>') {
+							tokenString.add(new OperatorToken("<>", sourceFile,
+									lineNumber, columnNumber));
+							columnNumber++;
+						} else {
+							tokenString.add(new OperatorToken("<", sourceFile,
+									lineNumber, columnNumber));
+							STokenizer.pushBack();
+						}
+					}
+					// Checking for >= operator
+					else if (chr == '>') {
+						nextToken = STokenizer.nextToken();
+						char chr2 = (char) STokenizer.ttype;
+						if (chr2 == '=') {
+							tokenString.add(new OperatorToken(">=", sourceFile,
+									lineNumber, columnNumber));
+							columnNumber++;
+						} else {
+							tokenString.add(new OperatorToken(">", sourceFile,
+									lineNumber, columnNumber));
+							STokenizer.pushBack();
+						}
+					}
+					// Checking for ':='
+					// if only : is found, we still enter ':' as Operator as
+					// correct definition is not provided in question
+					else if (chr == ':') {
+						nextToken = STokenizer.nextToken();
+						char chr2 = (char) STokenizer.ttype;
+						if (chr2 == '=') {
+							tokenString.add(new OperatorToken(":=", sourceFile,
+									lineNumber, columnNumber));
+							columnNumber++;
+						} else {
+							tokenString.add(new OperatorToken(":", sourceFile,
+									lineNumber, columnNumber));
+							STokenizer.pushBack();
+						}
+					} else {
+						tokenString.add(new OperatorToken(String.valueOf(chr),
+								sourceFile, lineNumber, columnNumber));
+					}
+
 				}
+
 				break;
 			}
 		}
