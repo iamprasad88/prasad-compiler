@@ -10,3 +10,5 @@ main class is located at com.prasad.cs6413.Compiler.java;
 
 To run the file please use
 ~\prasad-compiler\bin\com\prasad\cs6413\Compiler.class
+
+Please use test.txt and modify to test the program. You may add more complex structure.
