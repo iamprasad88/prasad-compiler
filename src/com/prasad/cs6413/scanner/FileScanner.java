@@ -105,7 +105,12 @@ public class FileScanner {
 				break;
 
 			case StreamTokenizer.TT_WORD:
-				if (Pattern.matches("[a-zA-z]([a-zA-Z0-9])*", STokenizer.sval)) {
+				if (Pattern.matches("(div|mod|and|or)",
+						STokenizer.sval)) {
+					tokenString.add(new OperatorToken(STokenizer.sval,
+							sourceFile, lineNumber, columnNumber));
+				} else if (Pattern.matches("[a-zA-z]([a-zA-Z0-9])*",
+						STokenizer.sval)) {
 					// matches id->letter(letter|digit)*
 					tokenString.add(new WordToken(STokenizer.sval, sourceFile,
 							lineNumber, columnNumber));
