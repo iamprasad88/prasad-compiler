@@ -1,17 +1,21 @@
 package com.prasad.cs6413.scanner;
+
 /**
  * 
- * @author Prasad Thondamuthur Vasanth (POly Id 0529494)
+ * @author Prasad Thondamuthur Vasanth (Poly Id 0529494)
  * 
- * Extends Simple Token and specialized functions to accommodate Word tokens
- *
+ *         Extends Simple Token and specialized functions to accommodate Word
+ *         tokens
+ *         27th Mar 2014 Integrated with Symbol Table
+ * 
  */
 public class WordToken extends SimpleToken {
 
-	public WordToken(String Lexeme, String sourceFile, int lineNumber,
+	public WordToken(String lexeme, String sourceFile, int lineNumber,
 			int columnNumber) {
 		// TODO Auto-generated constructor stub
-		super(Lexeme, sourceFile, lineNumber, columnNumber, "tokword");
+		super(lexeme, sourceFile, lineNumber, columnNumber, SymbolTable
+				.getWordTokenName(lexeme));
 	}
 
 	public String getLexeme() {
