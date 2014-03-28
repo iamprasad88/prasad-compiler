@@ -2,6 +2,7 @@ package com.prasad.cs6413;
 
 import com.prasad.cs6413.scanner.*;
 
+import java.io.FileWriter;
 import java.io.IOException;
 import java.io.BufferedReader;
 import java.io.InputStreamReader;
@@ -23,18 +24,23 @@ public class Compiler {
 
 		try {
 
-			System.out.println("Please provide a path to file...");
+			System.out.println("Please provide a path to Input file...");
 			BufferedReader scanf = new BufferedReader(new InputStreamReader(
 					System.in));
 
 			FileScanner fs = new FileScanner(scanf.readLine());
- 
+			System.out.println("Please provide a path to Output file...");
 			SimpleToken st[] = fs.getToken();
-
+			FileWriter ofs = new FileWriter(scanf.readLine());
 			for (SimpleToken s : st) {
-				System.out.println(s.getLexeme() + "\t" + s.getTokName());
+
+				String text = s.getLexeme() + "\t" + s.getTokName();
+
+				ofs.write(text + "\r\n");
+				System.out.println(text);
 				// System.out.println(s.toString());
 			}
+			ofs.close();
 		} catch (IOException e) {
 			// TODO Auto-generated catch block
 			System.out.println("Please provide a valid path to file.");

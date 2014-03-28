@@ -29,7 +29,7 @@ public class SymbolTable {
 			"functiontok", "gototok", "iftok", "implementationtok", "intok",
 			"inlinetok", "interfacetok", "labeltok", "modtok", "niltok",
 			"nottok", "objecttok", "oftok", "ontok", "operatortok", "ortok",
-			"packedtok", "proceduretok", "programtok", "recordtok",
+			"packedtok", "proceduretok", "programtoken", "recordtok",
 			"repeattok", "settok", "shltok", "shrtok", "stringtok", "thentok",
 			"totok", "truetok", "typetok", "unittok", "untiltok", "usestok",
 			"vartok", "whiletok", "withtok", "xor", "semicolontoken" };
