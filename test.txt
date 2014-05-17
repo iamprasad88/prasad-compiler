@@ -1,11 +1,4 @@
-{Comments are ignored}
 PROGRAM Sample (Input,Output);
-	CONST
-		if X5 > -15.99e4 then {All numbers are checked, even -ve values}
-			x5 - x6;
-			x :=x;
-		end if
-		{AND, OR, MOD, DIV also supported}
-		Z := X AND Y;
-	BEGIN
-	END;
+Begin
+{Comments are rejected}
+End.
