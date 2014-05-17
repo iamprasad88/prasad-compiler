@@ -1,0 +1,17 @@
+Scanned Token : IDENTIFIERTOKEN with PROGRAM on stack
+Scanned Token : IDENTIFIERTOKEN with IDENTIFIERTOKEN on stack
+Scanned Token : OPENPARENTOKEN with OPENPARENTOKEN on stack
+Scanned Token : IDENTIFIERTOKEN with IDLIST on stack
+Scanned Token : IDENTIFIERTOKEN with IDENTIFIERTOKEN on stack
+Scanned Token : COMMATOKEN with IDLISTPRIME on stack
+Scanned Token : COMMATOKEN with COMMATOKEN on stack
+Scanned Token : IDENTIFIERTOKEN with IDENTIFIERTOKEN on stack
+Scanned Token : CLOSEPARENTOKEN with IDLISTPRIME on stack
+Scanned Token : CLOSEPARENTOKEN with EPSILONTOKEN on stack
+Scanned Token : CLOSEPARENTOKEN with CLOSEPARENTOKEN on stack
+Scanned Token : SEMICOLONTOKEN with SEMICOLONTOKEN on stack
+Scanned Token : IDENTIFIERTOKEN with DECLARATIONS on stack
+Scanned Token : IDENTIFIERTOKEN with SUBPROGRAMDECLARATIONS on stack
+Scanned Token : IDENTIFIERTOKEN with COMPOUNDSTATEMENT on stack
+Scanned Token : IDENTIFIERTOKEN with PERIODTOKEN on stack
+Scanned Token : IDENTIFIERTOKEN with $ENDOFFILETOKEN on stack

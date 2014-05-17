@@ -95,6 +95,9 @@ public class FileScanner {
 			switch (nextToken) {
 
 			case StreamTokenizer.TT_EOF:
+				tokenString.add(new EndOfFileToken(SymbolTable.ENDOFFILETOKEN,
+						sourceFile, lineNumber, columnNumber,
+						SymbolTable.ENDOFFILETOKEN));
 				break;
 
 			case StreamTokenizer.TT_EOL: // Just to store extra info like line
@@ -121,6 +124,16 @@ public class FileScanner {
 							lineNumber, columnNumber));
 					tokenString.add(new WordToken(STokenizer.sval.substring(1),
 							sourceFile, lineNumber, columnNumber + 1));
+				} else if (Pattern.matches("[a-zA-z]([a-zA-Z0-9])*\\.",
+						STokenizer.sval)) {
+					// matches id->letter(letter|digit)*
+					String sub = STokenizer.sval.substring(0,
+							STokenizer.sval.indexOf('.'));
+					tokenString.add(new WordToken(sub, sourceFile, lineNumber,
+							columnNumber));
+					tokenString.add(new OperatorToken(".", sourceFile,
+							lineNumber, columnNumber + sub.length()));
+
 				} else if (Pattern.matches(
 						"-[0-9]+(.[0-9]+)?([eE](-)?[0-9]+)?", STokenizer.sval)) {
 					// Matches -ve num -> digit optional _fraction

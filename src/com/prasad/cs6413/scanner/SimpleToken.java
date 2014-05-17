@@ -32,7 +32,11 @@ public abstract class SimpleToken {
 	 * @param tokName
 	 *            String Stores Token Name (tokword, toknumber or tokop etc...)
 	 */
-	
+
+	SimpleToken() {
+
+	}
+
 	public SimpleToken(String Lexeme, String sourceFile, int lineNumber,
 			int columnNumber, String tokName) {
 		// TODO Auto-generated constructor stub
@@ -40,7 +44,7 @@ public abstract class SimpleToken {
 		this.SourceFile = sourceFile;
 		this.LineNumber = lineNumber;
 		this.ColumnNumber = columnNumber;
-		this.TokName = tokName.toUpperCase();
+		this.setTokName(tokName.toUpperCase());
 	}
 
 	public int getColumnNumber() {
@@ -68,9 +72,17 @@ public abstract class SimpleToken {
 		// TODO Auto-generated method stub
 		// return super.toString();
 
-		return this.TokName + " File:" + this.SourceFile + " Line:"
+		return this.getTokName() + " File:" + this.SourceFile + " Line:"
 				+ this.LineNumber + " Column:" + this.ColumnNumber;
 	}
 
 	abstract String getValue();
+
+	boolean equals(SimpleToken simpleToken) {
+		return getTokName().equals(simpleToken.getTokName());
+	}
+
+	public void setTokName(String tokName) {
+		TokName = tokName;
+	}
 }

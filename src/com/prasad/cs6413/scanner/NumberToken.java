@@ -1,5 +1,7 @@
 package com.prasad.cs6413.scanner;
 
+import java.util.regex.Pattern;
+
 /**
  * 
  * @author Prasad Thondamuthur Vasanth (POly Id 0529494)
@@ -15,7 +17,18 @@ public class NumberToken extends SimpleToken {
 	public NumberToken(String Lexeme, String sourceFile, int lineNumber,
 			int columnNumber) {
 		// TODO Auto-generated constructor stub
+
 		super(Lexeme, sourceFile, lineNumber, columnNumber, "toknumber");
+		if (Pattern.matches("[0-9]+(.[0-9]+)?([eE](-)?[0-9]+)?", Lexeme)) {
+			this.setTokName(SymbolTable.REALTOKEN);
+		} else if (Pattern
+				.matches("-[0-9]+(.[0-9]+)?([eE](-)?[0-9]+)?", Lexeme)) {
+			this.setTokName(SymbolTable.REALTOKEN);
+		} else if (Pattern.matches("[0-9]+(.[0-9]+)", Lexeme)) {
+			this.setTokName(SymbolTable.INTEGERTOKEN);
+		} else if (Pattern.matches("-[0-9]+(.[0-9]+)", Lexeme)) {
+			this.setTokName(SymbolTable.INTEGERTOKEN);
+		}
 		this.value = Double.parseDouble(Lexeme);
 	}
 
